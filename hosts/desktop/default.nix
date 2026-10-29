@@ -13,7 +13,7 @@
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
 
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  boot.kernelPackages = pkgs.linuxPackages;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -25,6 +25,8 @@
   };
 
   networking.hostName = "desktop";
+  networking.networkmanager.enable = true;
+  hardware.enableRedistributableFirmware = true;
   time.timeZone = "America/New_York";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
