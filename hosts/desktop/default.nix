@@ -25,7 +25,11 @@
   };
 
   networking.hostName = "desktop";
-  networking.networkmanager.enable = true;
+#  networking.networkmanager.enable = true;
+  networking.wireless = {
+  enable = true;
+  networks."Neo Thuyen - 5 GHz".psk = "tysubi123";
+  };
   hardware.enableRedistributableFirmware = true;
   time.timeZone = "America/New_York";
 
