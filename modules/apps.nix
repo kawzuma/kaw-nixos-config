@@ -1,8 +1,32 @@
 { config, pkgs, ... }:
 
 {
+  # Declarative Flatpak Configuration
+  services.flatpak = {
+    enable = true;
+
+    remotes = [
+      {
+        name = "flathub";
+        location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
+      }
+    ];
+
+    packages = [
+      "com.github.tchx84.Flatseal"
+      "org.vinegarhq.Sober"
+    ];
+
+    update.auto = {
+      enable = true;
+      onCalendar = "weekly";
+    };
+
+    uninstallUnmanaged = true;
+  };
+
+  # Native System Packages
   environment.systemPackages = with pkgs; [
-    # Packages
     brave-origin
     spotify
     equibop
@@ -10,15 +34,21 @@
     gh
     fastfetch
     _7zz
+    unzip
+    zip
     kdePackages.ark
     curl
+    nh
 
-    # Btrfs related
+    # Steam FHS Runner
+    steam-run
+
+    # Btrfs Tools
     snapper
     btrfs-progs
     btrfs-assistant
 
-    # Theme configuration & styling tools for system-wide dark mode
+    # Theme Configuration Tools
     nwg-look
     libsForQt5.qt5ct
     kdePackages.qt6ct

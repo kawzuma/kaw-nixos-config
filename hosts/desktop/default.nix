@@ -1,5 +1,9 @@
 { config, pkgs, inputs, ... }:
 
+let
+  # Correctly build Darkly using Plasma 6 KDE packages
+  darkly-qt6 = pkgs.kdePackages.callPackage "${inputs.darkly}/nix/package.nix" { };
+in
 {
   imports = [
     ./hardware.nix
@@ -9,6 +13,7 @@
     ../../modules/apps.nix
   ];
 
+  # CachyOS Kernel via overlay
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
   ];
@@ -24,6 +29,18 @@
     useOSProber = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Store optimization & automatic garbage collection
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   # Automatic Snapper Btrfs snapshots for root and home
   services.snapper = {
@@ -59,13 +76,16 @@
     memoryPercent = 50;
   };
 
+  # Install Darkly Qt6 Theme
+  environment.systemPackages = [
+    darkly-qt6
+  ];
+
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   hardware.enableRedistributableFirmware = true;
   time.timeZone = "America/New_York";
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   programs.fish.enable = true;
 
