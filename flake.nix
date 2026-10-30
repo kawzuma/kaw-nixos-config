@@ -8,7 +8,7 @@
 
   outputs = { self, nixpkgs, nix-cachyos-kernel, ... }@inputs: {
     nixosConfigurations = {
-      desktop = nixpkgs.lib.nixosSystem {
+      nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
