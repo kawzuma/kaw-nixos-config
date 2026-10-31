@@ -29,15 +29,27 @@
 
     # PineconeMC Flake Input
     pineconemc.url = "github:ElyPrismLauncher/Launcher";
+
+    # Home Manager Input
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, darkly, nix-cachyos-kernel, pineconemc, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, darkly, nix-cachyos-kernel, pineconemc, home-manager, ... }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.kaw = import ./hosts/desktop/home.nix;
+          }
           ./hosts/desktop/default.nix
         ];
       };

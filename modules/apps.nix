@@ -34,14 +34,13 @@
     equibop
     git
     gh
-    fastfetch
     _7zz
     unzip
     zip
     kdePackages.ark
     curl
     nh
-    fetch
+    dua
 
     # Steam FHS Runner
     steam-run
