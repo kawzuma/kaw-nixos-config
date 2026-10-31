@@ -13,6 +13,20 @@ in
     ../../modules/apps.nix
   ];
 
+  # Force Nix to trust and use the CachyOS binary cache
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
+    substituters = [
+      "https://cache.nixos.org"
+      "https://cache.lantian.pub/lantian"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
+    ];
+  };
+
   # CachyOS Kernel via overlay
   nixpkgs.overlays = [
     inputs.nix-cachyos-kernel.overlays.pinned
@@ -29,12 +43,6 @@ in
     useOSProber = true;
   };
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Store optimization & automatic garbage collection
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    auto-optimise-store = true;
-  };
 
   nix.gc = {
     automatic = true;

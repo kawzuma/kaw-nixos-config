@@ -1,6 +1,15 @@
 {
   description = "Kaw's Modular NixOS Flake Configuration";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.lantian.pub/lantian"
+    ];
+    extra-trusted-public-keys = [
+      "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -13,11 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Link nix-cachyos-kernel to main nixpkgs
-    nix-cachyos-kernel = {
-      url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Link nix-cachyos-kernel without forcing follows so binary cache works
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs = { self, nixpkgs, nix-flatpak, darkly, nix-cachyos-kernel, ... }@inputs: {
