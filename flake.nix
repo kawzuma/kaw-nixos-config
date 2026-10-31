@@ -4,9 +4,11 @@
   nixConfig = {
     extra-substituters = [
       "https://cache.lantian.pub/lantian"
+      "https://prismlauncher.cachix.org"
     ];
     extra-trusted-public-keys = [
       "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
+      "prismlauncher.cachix.org-1:9/n/FGyABA2jLUVfY+DEp4hKds/rwO+SCOtbOkDzd+c="
     ];
   };
 
@@ -24,9 +26,15 @@
 
     # Link nix-cachyos-kernel without forcing follows so binary cache works
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+
+    # PineconeMC Flake Input
+    pineconemc.url = "github:ElyPrismLauncher/Launcher";
+
+    # 3D Animated Fetch Tool
+    fetch-3d.url = "github:areofyl/fetch";
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, darkly, nix-cachyos-kernel, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, darkly, nix-cachyos-kernel, pineconemc, fetch-3d, ... }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";

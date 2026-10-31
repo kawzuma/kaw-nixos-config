@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, inputs, ... }:
 {
   # Declarative Flatpak Configuration
   services.flatpak = {
@@ -27,6 +26,10 @@
 
   # Native System Packages
   environment.systemPackages = with pkgs; [
+    # Flake inputs
+    # Fetch 3D
+    inputs.fetch-3d.packages.${pkgs.stdenv.hostPlatform.system}.default
+
     brave-origin
     spotify
     equibop

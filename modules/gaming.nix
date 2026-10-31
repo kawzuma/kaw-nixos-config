@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   programs.steam = {
@@ -15,5 +15,8 @@
     mangohud
     protonplus
     wineWow64Packages.stable
+
+    # PineconeMC package from flake input
+    inputs.pineconemc.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

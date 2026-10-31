@@ -13,17 +13,19 @@ in
     ../../modules/apps.nix
   ];
 
-  # Force Nix to trust and use the CachyOS binary cache
+  # Nix Binary Caches & Settings
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     auto-optimise-store = true;
     substituters = [
       "https://cache.nixos.org"
       "https://cache.lantian.pub/lantian"
+      "https://prismlauncher.cachix.org"
     ];
     trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
+      "prismlauncher.cachix.org-1:9/n/FGyABA2jLUVfY+DEp4hKds/rwO+SCOtbOkDzd+c="
     ];
   };
 
