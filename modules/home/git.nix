@@ -3,18 +3,20 @@
 {
   programs.git = {
     enable = true;
-    userName = "kawzuma";
-    userEmail = "ngogiakhang1912@gmail.com";
-    extraConfig = {
+    settings = {
+      user = {
+        name = "kawzuma";
+        email = "ngogiakhang1912@gmail.com"; # Replace with your actual email
+      };
       init.defaultBranch = "main";
       pull.rebase = true;
       core.editor = "nano";
-    };
-    aliases = {
-      st = "status";
-      co = "checkout";
-      br = "branch";
-      cm = "commit -m";
+      alias = {
+        st = "status";
+        co = "checkout";
+        br = "branch";
+        cm = "commit -m";
+      };
     };
   };
 }
