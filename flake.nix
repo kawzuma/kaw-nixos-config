@@ -28,11 +28,6 @@
         modules = [
           nix-flatpak.nixosModules.nix-flatpak
           ./hosts/desktop/default.nix
-          ./hosts/desktop/hardware.nix
-          ./modules/nvidia.nix
-          ./modules/desktop.nix
-          ./modules/gaming.nix
-          ./modules/apps.nix
         ];
       };
     };

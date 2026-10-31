@@ -20,4 +20,8 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  # Enable LACT daemon and package for GPU monitoring and undervolting
+  services.lact.enable = true;
+  environment.systemPackages = [ pkgs.lact ];
 }
