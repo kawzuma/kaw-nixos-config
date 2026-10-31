@@ -48,6 +48,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.kaw = import ./hosts/desktop/home.nix;
           }
           ./hosts/desktop/default.nix

@@ -28,6 +28,5 @@
     size = 24;
   };
 
-  # Aligned with your current 2026 system state version
-  home.stateVersion = "26.05";
+  home.stateVersion = "26.11";
 }
