@@ -27,9 +27,8 @@
   # Native System Packages
   environment.systemPackages = with pkgs; [
     # Flake inputs
-    # Fetch 3D
-    inputs.fetch-3d.packages.${pkgs.stdenv.hostPlatform.system}.default
 
+    # Packages
     brave-origin
     spotify
     equibop
@@ -42,6 +41,7 @@
     kdePackages.ark
     curl
     nh
+    fetch
 
     # Steam FHS Runner
     steam-run

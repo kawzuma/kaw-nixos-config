@@ -29,12 +29,9 @@
 
     # PineconeMC Flake Input
     pineconemc.url = "github:ElyPrismLauncher/Launcher";
-
-    # 3D Animated Fetch Tool
-    fetch-3d.url = "github:areofyl/fetch";
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, darkly, nix-cachyos-kernel, pineconemc, fetch-3d, ... }@inputs: {
+  outputs = { self, nixpkgs, nix-flatpak, darkly, nix-cachyos-kernel, pineconemc, ... }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
